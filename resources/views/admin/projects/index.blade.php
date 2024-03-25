@@ -6,7 +6,7 @@
     <div class="d-flex justify-content-between align-items-center">
       <h1 class="py-3">Projects</h1>
       <div>
-        <a href="{{route('admin.projects.create')}}" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Aggiungi progetto</a>
+        <a href="{{route('admin.projects.create')}}" class="btn btn-success"><i class="fa-solid fa-plus"></i> Aggiungi progetto</a>
         <a href="{{route('admin.projects.trash')}}" class="btn btn-danger"><i class="fa-solid fa-trash"></i> Cestino</a>
       </div>
     </div>
@@ -17,8 +17,9 @@
             <th scope="col">#</th>
             <th scope="col">Titolo</th>
             <th scope="col">Slug</th>
-            <th scope="col">Descrizione</th>
-            <th scope="col">Linguaggi di Programmazione</th>
+            <th scope="col" class="w-25">Descrizione</th>
+            <th scope="col">Linguaggi</th>
+            <th scope="col">Categoria</th>
             <th scope="col">Data creazione</th>
             <th scope="col">Ultima modifica</th>
             <th scope="col"></th>
@@ -32,6 +33,7 @@
                 <td>{{ $project->slug }}</td>
                 <td>{{ $project->content }}</td>
                 <td>{{ $project->programming_languages }}</td>
+                <td class="text-center"><span class="badge" style="background-color: {{ $project->type?->color }}">{{ $project->type? $project->type->label : 'Nessuna' }}</span></td>
                 <td>{{ $project->getCreatedAt() }}</td>
                 <td>{{ $project->getUpdatedAt() }}</td>
                 <td>
@@ -52,7 +54,7 @@
               </tr>
             @empty
                <tr>
-                <td colspan="8">
+                <td colspan="9">
                   <h3 class="text-center">Non ci sono progetti.</h3>
                 </td>
                </tr>

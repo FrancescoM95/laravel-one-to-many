@@ -2,9 +2,12 @@
 
 namespace Database\Factories;
 
+use App\Models\Type;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Project>
@@ -25,17 +28,21 @@ class ProjectFactory extends Factory
         $slug =  Str::slug($title);
 
         $programmingLanguages = fake()->randomElements(['HTML', 'CSS', 'JavaScript', 'PHP'], rand(1, 4));
-        $programmingLanguagesString = implode(',', $programmingLanguages);
+        $programmingLanguagesString = implode(', ', $programmingLanguages);
 
         $img = fake()->image(null, 250, 250);
         $img_url = Storage::putFileAs('project_images', $img, "$slug.png");
 
+        $type_ids = Type::pluck('id')->toArray();
+        $type_ids[] = null;
+
         return [
             'title' => $title,
             'slug' => $slug,
-            'content' => fake()->paragraph(10, true),
+            'content' => fake()->paragraph(5, true),
             'image' => $img_url,
             'programming_languages' => $programmingLanguagesString,
+            'type_id' => Arr::random($type_ids)
         ];
     }
 }

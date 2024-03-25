@@ -15,8 +15,9 @@
             <th scope="col">#</th>
             <th scope="col">Titolo</th>
             <th scope="col">Slug</th>
-            <th scope="col">Descrizione</th>
-            <th scope="col">Linguaggio</th>
+            <th scope="col" class="w-25">Descrizione</th>
+            <th scope="col">Linguaggi</th>
+            <th scope="col">Categoria</th>
             <th scope="col">Data creazione</th>
             <th scope="col">Ultima modifica</th>
             <th scope="col"></th>
@@ -30,6 +31,7 @@
                 <td>{{ $project->slug }}</td>
                 <td>{{ $project->content }}</td>
                 <td>{{ $project->programming_languages }}</td>
+                <td class="text-center"><span class="badge" style="background-color: {{ $project->type?->color }}">{{ $project->type? $project->type->label : 'Nessuna' }}</span></td>
                 <td>{{ $project->getUpdatedAt() }}</td>
                 <td>{{ $project->getUpdatedAt() }}</td>
                 <td>
@@ -54,7 +56,7 @@
               </tr>
             @empty
                <tr>
-                <td colspan="8">
+                <td colspan="9">
                   <h3 class="text-center">Non ci sono progetti.</h3>
                 </td>
                </tr>

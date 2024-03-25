@@ -12,7 +12,7 @@ class Project extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = ['title', 'content', 'programming_languages'];
+    protected $fillable = ['title', 'content', 'programming_languages', 'type_id'];
 
     public function getCreatedAt()
     {

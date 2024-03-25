@@ -54,7 +54,8 @@
         </div>
     </div>
 
-    <div class="col-12">
+    <div class="col-9">
+        <label for="image">Inesrisci url immagine</label>
         <input type="file" class="form-control @error('image') is-invalid @elseif(old('image', '')) is-valid @enderror" id="image" name="image" placeholder="Carica immmagine" value="{{old('image', $project->image)}}">
         @error('image')
         <div class="invalid-feedback">
@@ -65,6 +66,26 @@
             Inserisci l'immagine del progetto.
         </div>  
         @enderror
+    </div>
+
+    <div class="col-3">
+        <label for="type_id">Seleziona Categoria</label>
+        <select class="form-select @error('type_id') is-invalid @elseif(old('type_id', '')) is-valid @enderror" id="type_id" name="type_id">
+            <option value="">Nessuna</option>
+            @foreach ($types as $type){
+                <option value="{{ $type->id }}" @if (old('type_id', $project->type?->id) == $type->id) selected @endif>{{ $type->label }}</option>
+            }
+            @endforeach
+          </select>
+          @error('type_id')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @else
+            <div class="form-text">
+                Inserisci la categoria del progetto.
+            </div>  
+            @enderror
     </div>
     
     <div class="col-12">

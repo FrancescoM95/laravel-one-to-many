@@ -15,7 +15,9 @@
     <div class="col-4">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">{{ $project->title }}</h3>
+              <div class="d-flex gap-2 align-items-center">
+                <h3 class="card-title">{{ $project->title }} </h3><span class="badge" style="background-color: {{ $project->type?->color }}">{{ $project->type? $project->type->label : '' }}</span>
+              </div>
             </div>
             <div class="card-body">
                 <img src="{{ $project->printImage() }}" class="card-img-top me-3 mb-3 img-fluid" alt="{{ $project->title }}">
