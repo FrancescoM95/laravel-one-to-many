@@ -9,7 +9,9 @@
     <div class="col-4">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">{{ $project->title }}</h3>
+                <div class="d-flex gap-2 align-items-center">
+                    <h3 class="card-title">{{ $project->title }} </h3><span class="badge" style="background-color: {{ $project->type?->color }}">{{ $project->type? $project->type->label : '' }}</span>
+                  </div>
             </div>
             <div class="card-body">
                 <img src="{{ $project->printImage() }}" class="card-img-top me-3 mb-3 img-fluid" alt="{{ $project->title }}">
@@ -18,7 +20,6 @@
             <div class="card-footer">
                 <p class="card-text mb-1"><strong>Stack:</strong> {{ $project->programming_languages }}.</p>
                 <p class="card-text mb-1"><strong>Data creazione:</strong> {{ $project->getCreatedAt() }}</p>
-                <p class="card-text mb-1"><strong>Ultima modifica:</strong>  {{ $project->getUpdatedAt() }}</p>
             </div>
             <a href="{{ route('guest.projects.show', $project->slug)}}" class="btn btn-sm btn-outline-info">
                 Vedi dettagli
